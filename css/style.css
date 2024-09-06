@@ -1,15 +1,19 @@
 /* Custom Properties */
 :root {
     --main-bg-color: #128C7E;
-    --secondary-bg-color: #DADADA;
+    --secondary-bg-color: #DADBD4;
+    --header-bg-color: #EAEAEA;
+    --footer-bg-color: #F3EEEA;
     --chat-bg-color: lightgreen;
     --contact-bg-color: lightblue;
-    --header-bg-color: darkblue;
-    --footer-bg-color: rgb(105, 105, 105);
     --sent-message-bg: #D5F9BA;
     --received-message-bg: #ffffff;
     --font-family: 'Lato', sans-serif;
     --avatar-size: 40px;
+    --icon-color: #000;
+    --text-color: #000;
+    --padding-main: 20px;
+    --gap-main: 15px;
     --container-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
 }
 
@@ -30,8 +34,6 @@ body {
     height: 90vh;
     width: 95%;
     box-shadow: var(--container-shadow);
-    overflow: hidden;
-    background-color: white;
 }
 
 /* Colonna dei contatti */
@@ -42,19 +44,75 @@ body {
     flex-direction: column;
 }
 
-.contacts-header {
+.contacts-header,
+.chat-header {
     background-color: var(--header-bg-color);
-    color: white;
-    padding: 20px;
+    color: var(--text-color);
+    padding: var(--padding-main);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Sezione per l'immagine e il nome */
+.profile-info,
+.chat-info {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-main);
+}
+
+/* Avatar circolare */
+.profile-avatar,
+.header-avatar,
+.contact-avatar {
+    width: var(--avatar-size);
+    height: var(--avatar-size);
+    border-radius: 50%;
+}
+
+/* Icone */
+.header-icons,
+.chat-header-icons {
+    display: flex;
+    gap: var(--gap-main);
+}
+
+.header-icons i,
+.chat-header-icons i,
+.chat-footer i {
+    font-size: 1.5rem;
+    color: var(--icon-color);
+    cursor: pointer;
+}
+
+/* Barra di ricerca */
+.search-bar {
+    padding: 10px;
+    background-color: #f1f1f1;
+}
+
+.search-bar input {
+    width: 97%;
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+}
+
+/* Lista contatti */
+.contacts-list {
+    background-color: #fff;
+    flex-grow: 1;
+    padding: var(--padding-main);
+    overflow-y: auto;
 }
 
 ul {
-    list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-/* Stile per il contatto nella lista */
 .contacts-list li {
     display: flex;
     align-items: center;
@@ -65,28 +123,13 @@ ul {
 
 .contacts-list li:hover {
     background-color: lightgray;
+    border-radius: 8px;
 }
 
-/* Stile per l'immagine del contatto */
-.contact-avatar {
-    width: var(--avatar-size);
-    height: var(--avatar-size);
-    border-radius: 50%;
-    margin-right: 15px;
-}
-
-/* p con i Nomi dei contatti */
 .contacts-list p {
-    font-weight: bold;
     margin: 0;
+    margin-left: 10px;
     font-size: 16px;
-}
-
-.contacts-list {
-    background-color: #fff;
-    flex-grow: 1;
-    padding: 20px;
-    overflow-y: auto;
 }
 
 /* Colonna della chat */
@@ -97,63 +140,48 @@ ul {
     flex-direction: column;
 }
 
-.chat-header {
-    background-color: var(--header-bg-color);
-    color: white;
-    padding: 20px;
-}
-
 .chat-messages {
     background: url('../img/mine.png');
-    padding: 10px;
     flex-grow: 1;
-    padding: 20px;
+    padding: var(--padding-main);
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: var(--gap-main);
     overflow-y: auto;
+}
+
+.sent,
+.received {
+    padding: 0 5px;
+    border-radius: 10px;
+    max-width: 60%;
 }
 
 .sent {
     background-color: var(--sent-message-bg);
-    padding: 0 5px;
-    border-radius: 10px;
     align-self: flex-end;
-    max-width: 60%;
 }
 
 .received {
     background-color: var(--received-message-bg);
-    padding: 0 5px;
-    border-radius: 10px;
-    margin-bottom: 10px;
     align-self: flex-start;
-    max-width: 60%;
 }
 
+/* Footer */
 .chat-footer {
     background-color: var(--footer-bg-color);
-    color: white;
-    padding: 10px 20px;
+    color: var(--text-color);
+    padding: 10px var(--padding-main);
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-/* Stile per le icone */
-.chat-footer i {
-    font-size: 1.5rem;
-    color: white;
-    cursor: pointer;
-}
-
-/* Stile per l'input di testo */
 .chat-footer input {
     flex-grow: 1;
     padding: 10px;
     border-radius: 20px;
     border: none;
     outline: none;
-    background-color: white;
     color: black;
 }

@@ -21,13 +21,31 @@
         <!-- Colonna sinistra (Contatti) -->
         <div class="contacts-column">
             <div class="contacts-header">
-                <!-- Header dei contatti -->
-                <p>Header Contatti</p>
+                <div class="profile-info">
+                    <!-- Immagine del nostro profilo -->
+                    <img src="./img/avatar_io.png" alt="avatar" class="profile-avatar">
+                    <!-- Nome del profilo personale -->
+                    <p>Sofia</p>
+                </div>
+
+                <!-- Icone del nostro profilo -->
+                <div class="header-icons">
+                    <!-- Icona chat -->
+                    <i class="bi bi-chat-left-text"></i>
+                    <!-- Icona impostazioni -->
+                    <i class="bi bi-three-dots-vertical"></i>
+                </div>
             </div>
+            <!-- Barra di ricerca contatti -->
+            <div class="search-bar">
+                <input v-model="searchQuery" type="text" placeholder="Cerca contatti..." />
+            </div>
+
             <div class="contacts-list">
                 <!-- Place per la lista dei contatti -->
                 <ul>
-                    <li v-for="contact in contacts" :key="contact.name" @click="selectContact(contact)">
+                    <!-- Visualizzazione dinamica della lista contatti filtrata -->
+                    <li v-for="contact in filteredContacts" :key="contact.name" @click="selectContact(contact)">
                         <img :src="contact.avatar" alt="avatar" class="contact-avatar">
                         <p>{{ contact.name }}</p>
                     </li>
@@ -37,8 +55,23 @@
 
         <!-- Colonna destra (Chat) -->
         <div class="chat-column" v-if="activeContact">
-            <div class="chat-header">
-                <p>{{ activeContact.name }}</p>
+            <div class="chat-header" v-if="activeContact">
+                <div class="chat-info">
+                    <!-- Immagine del contatto selezionato -->
+                    <img :src="activeContact.avatar" alt="avatar" class="header-avatar">
+                    <!-- Nome del contatto selezionato -->
+                    <p>{{ activeContact.name }}</p>
+                </div>
+
+                <!-- Icone -->
+                <div class="chat-header-icons">
+                    <!-- Icona videocamera -->
+                    <i class="bi bi-camera-video"></i>
+                    <!-- Icona ricerca -->
+                    <i class="bi bi-search"></i>
+                    <!-- Icona opzioni -->
+                    <i class="bi bi-three-dots-vertical"></i>
+                </div>
             </div>
             <div class="chat-messages">
                 <!-- Visualizzazione dei messaggi del contatto selezionato -->
