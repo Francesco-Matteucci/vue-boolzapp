@@ -1,3 +1,66 @@
 body {
     font-family: 'Lato', sans-serif;
+    background: linear-gradient(to bottom, #128C7E 10%, #DADADA 10%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+/* Layout principale */
+.container {
+    display: flex;
+    flex-direction: row;
+    height: 90vh;
+    width: 95%;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    background-color: white;
+}
+
+/* Colonna dei contatti */
+.contacts-column {
+    width: 30%;
+    background-color: lightblue;
+    display: flex;
+    flex-direction: column;
+}
+
+.contacts-header {
+    background-color: darkblue;
+    color: white;
+    padding: 20px;
+}
+
+.contacts-list {
+    background-color: lightcoral;
+    flex-grow: 1;
+    padding: 20px;
+}
+
+/* Colonna della chat */
+.chat-column {
+    width: 70%;
+    background-color: lightgreen;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-header {
+    background-color: darkgreen;
+    color: white;
+    padding: 20px;
+}
+
+.chat-messages {
+    background-color: beige;
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.chat-footer {
+    background-color: rgb(105, 105, 105);
+    color: white;
+    padding: 20px;
 }
