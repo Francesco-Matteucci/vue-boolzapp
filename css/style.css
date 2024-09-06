@@ -1,6 +1,21 @@
+/* Custom Properties */
+:root {
+    --main-bg-color: #128C7E;
+    --secondary-bg-color: #DADADA;
+    --chat-bg-color: lightgreen;
+    --contact-bg-color: lightblue;
+    --header-bg-color: darkblue;
+    --footer-bg-color: rgb(105, 105, 105);
+    --sent-message-bg: #D5F9BA;
+    --received-message-bg: #ffffff;
+    --font-family: 'Lato', sans-serif;
+    --avatar-size: 40px;
+    --container-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+}
+
 body {
-    font-family: 'Lato', sans-serif;
-    background: linear-gradient(to bottom, #128C7E 10%, #DADADA 10%);
+    font-family: var(--font-family);
+    background: linear-gradient(to bottom, var(--main-bg-color) 10%, var(--secondary-bg-color) 10%);
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -14,7 +29,7 @@ body {
     flex-direction: row;
     height: 90vh;
     width: 95%;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--container-shadow);
     overflow: hidden;
     background-color: white;
 }
@@ -22,21 +37,21 @@ body {
 /* Colonna dei contatti */
 .contacts-column {
     width: 30%;
-    background-color: lightblue;
+    background-color: var(--contact-bg-color);
     display: flex;
     flex-direction: column;
 }
 
 .contacts-header {
-    background-color: darkblue;
+    background-color: var(--header-bg-color);
     color: white;
     padding: 20px;
 }
 
 ul {
     list-style-type: none;
-    padding: 0;
     margin: 0;
+    padding: 0;
 }
 
 /* Stile per il contatto nella lista */
@@ -52,15 +67,15 @@ ul {
     background-color: lightgray;
 }
 
-/* Stile per l'mmagine del contatto */
+/* Stile per l'immagine del contatto */
 .contact-avatar {
-    width: 40px;
-    height: 40px;
+    width: var(--avatar-size);
+    height: var(--avatar-size);
     border-radius: 50%;
     margin-right: 15px;
 }
 
-/* p con i Nomi del contatto */
+/* p con i Nomi dei contatti */
 .contacts-list p {
     font-weight: bold;
     margin: 0;
@@ -76,13 +91,13 @@ ul {
 /* Colonna della chat */
 .chat-column {
     width: 70%;
-    background-color: lightgreen;
+    background-color: var(--chat-bg-color);
     display: flex;
     flex-direction: column;
 }
 
 .chat-header {
-    background-color: darkgreen;
+    background-color: var(--header-bg-color);
     color: white;
     padding: 20px;
 }
@@ -97,7 +112,7 @@ ul {
 }
 
 .sent {
-    background-color: #D5F9BA;
+    background-color: var(--sent-message-bg);
     padding: 10px;
     border-radius: 10px;
     margin-bottom: 10px;
@@ -106,7 +121,7 @@ ul {
 }
 
 .received {
-    background-color: #ffffff;
+    background-color: var(--received-message-bg);
     padding: 10px;
     border-radius: 10px;
     margin-bottom: 10px;
@@ -115,7 +130,7 @@ ul {
 }
 
 .chat-footer {
-    background-color: rgb(105, 105, 105);
+    background-color: var(--footer-bg-color);
     color: white;
     padding: 20px;
 }
