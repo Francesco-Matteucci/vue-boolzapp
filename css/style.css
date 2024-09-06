@@ -33,8 +33,42 @@ body {
     padding: 20px;
 }
 
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Stile per il contatto nella lista */
+.contacts-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.contacts-list li:hover {
+    background-color: lightgray;
+}
+
+/* Stile per l'mmagine del contatto */
+.contact-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+/* p con i Nomi del contatto */
+.contacts-list p {
+    font-weight: bold;
+    margin: 0;
+    font-size: 16px;
+}
+
 .contacts-list {
-    background-color: lightcoral;
+    background-color: #fff;
     flex-grow: 1;
     padding: 20px;
 }
@@ -54,9 +88,30 @@ body {
 }
 
 .chat-messages {
-    background-color: beige;
+    background: url('../img/mine.png');
     flex-grow: 1;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sent {
+    background-color: #D5F9BA;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    align-self: flex-end;
+    max-width: 60%;
+}
+
+.received {
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    align-self: flex-start;
+    max-width: 60%;
 }
 
 .chat-footer {
