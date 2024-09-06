@@ -1,21 +1,62 @@
 /* Custom Properties */
 :root {
-    --main-bg-color: #128C7E;
-    --secondary-bg-color: #DADBD4;
-    --header-bg-color: #EAEAEA;
-    --footer-bg-color: #F3EEEA;
-    --contact-bg-color: lightblue;
-    --sent-message-bg: #D5F9BA;
-    --received-message-bg: #ffffff;
+    /* Light Mode Colors */
+    --light-main-bg-color: #009688;
+    --light-secondary-bg-color: #DADBD4;
+    --light-header-bg-color: #EAEAEA;
+    --light-footer-bg-color: #F3EEEA;
+    --light-contact-bg-color: lightblue;
+    --light-sent-message-bg: #D5F9BA;
+    --light-received-message-bg: #ffffff;
+    --light-text-color: #000000;
+    --light-icon-color: #000000;
+
+    /* Dark Mode Colors */
+    --dark-main-bg-color: #2c2c2c;
+    --dark-secondary-bg-color: #3e3e3e;
+    --dark-header-bg-color: #1a1a1a;
+    --dark-footer-bg-color: #252525;
+    --dark-contact-bg-color: #4a4a4a;
+    --dark-sent-message-bg: #056162;
+    --dark-received-message-bg: #262d31;
+    --dark-text-color: #f1f1f1;
+    --dark-icon-color: #f1f1f1;
+
+    /* Shared properties */
     --font-family: 'Lato', sans-serif;
     --avatar-size: 40px;
-    --icon-color: #000;
-    --text-color: #000;
     --padding-main: 20px;
     --gap-main: 15px;
     --container-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
 }
 
+/* Light Mode (predefinito) */
+body.light-mode {
+    --main-bg-color: var(--light-main-bg-color);
+    --secondary-bg-color: var(--light-secondary-bg-color);
+    --header-bg-color: var(--light-header-bg-color);
+    --footer-bg-color: var(--light-footer-bg-color);
+    --text-color: var(--light-text-color);
+    --sent-message-bg: var(--light-sent-message-bg);
+    --received-message-bg: var(--light-received-message-bg);
+    --contact-bg-color: var(--light-contact-bg-color);
+    --icon-color: var(--light-icon-color);
+}
+
+/* Dark Mode */
+body.dark-mode {
+    --main-bg-color: var(--dark-main-bg-color);
+    --secondary-bg-color: var(--dark-secondary-bg-color);
+    --header-bg-color: var(--dark-header-bg-color);
+    --footer-bg-color: var(--dark-footer-bg-color);
+    --text-color: var(--dark-text-color);
+    --sent-message-bg: var(--dark-sent-message-bg);
+    --received-message-bg: var(--dark-received-message-bg);
+    --contact-bg-color: var(--dark-contact-bg-color);
+    --icon-color: var(--dark-icon-color);
+}
+
+/* Base Styles */
 body {
     font-family: var(--font-family);
     background: linear-gradient(to bottom, var(--main-bg-color) 10%, var(--secondary-bg-color) 10%);
@@ -65,7 +106,7 @@ body {
     gap: var(--gap-main);
 }
 
-/* Avatar circolare */
+/* Avatar */
 .profile-avatar,
 .header-avatar,
 .contact-avatar {
@@ -87,6 +128,7 @@ body {
     font-size: 1.5rem;
     color: var(--icon-color);
     cursor: pointer;
+    transition: color 0.3s ease;
 }
 
 /* Barra di ricerca */
@@ -179,21 +221,57 @@ p.last-message {
     overflow-y: auto;
 }
 
+body.dark-mode .chat-messages {
+    background: url('../img/bg-dark.jpg');
+}
+
+/* Messaggi */
 .sent,
 .received {
     padding: 0 5px;
     border-radius: 10px;
-
+    max-width: 60%;
+    position: relative;
+    margin-bottom: 10px;
+    color: var(--text-color);
 }
 
 .sent {
     background-color: var(--sent-message-bg);
     align-self: flex-end;
+    border-top-right-radius: 0;
+    position: relative;
+}
+
+.sent::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -10px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid var(--sent-message-bg);
+    border-top: 0 solid transparent;
+    border-bottom: 10px solid transparent;
 }
 
 .received {
     background-color: var(--received-message-bg);
     align-self: flex-start;
+    border-top-left-radius: 0;
+    position: relative;
+}
+
+.received::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -10px;
+    width: 0;
+    height: 0;
+    border-right: 10px solid var(--received-message-bg);
+    border-top: 0 solid transparent;
+    border-bottom: 10px solid transparent;
 }
 
 .message-wrapper {
@@ -218,7 +296,7 @@ p.last-message {
     margin-left: 10px;
 }
 
-/* Data in basso a destra */
+/* Data sul messaggio */
 .message-time {
     position: absolute;
     bottom: 5px;
@@ -230,6 +308,7 @@ p.last-message {
 .dropdown-menu {
     position: absolute;
     background-color: white;
+    color: #000;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     padding: 10px;
@@ -270,4 +349,33 @@ p.last-message {
     border-radius: 20px;
     border: none;
     outline: none;
+}
+
+/* Animazione per i messaggi */
+.animate-message.sent {
+    animation: slideInRight 0.4s ease forwards;
+}
+
+.animate-message.received {
+    animation: slideInLeft 0.4s ease forwards;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
 }

@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body class="light-mode">
     <div id="app" class="container">
         <!-- Colonna di sinistra (Contatti) -->
         <div class="contacts-column">
@@ -37,6 +37,9 @@
                     <i class="bi bi-chat-left-text"></i>
                     <!-- Icona impostazioni -->
                     <i class="bi bi-three-dots-vertical"></i>
+                    <!-- Icona cambio tema -->
+                    <i :class="{'bi-moon': darkMode, 'bi-brightness-high': !darkMode}" id="themeToggle"
+                        @click="toggleTheme"></i>
                 </div>
             </div>
             <!-- Barra di ricerca contatti -->
@@ -87,7 +90,7 @@
             <div class="chat-messages">
                 <!-- Visualizzazione dei messaggi del contatto selezionato -->
                 <div v-for="(message, index) in activeContact.messages" :key="message.date" :class="message.status"
-                    class="message-wrapper">
+                    class="message-wrapper animate-message">
                     <div class="message-content">
                         <p>{{ message.message }}</p>
                         <!-- Orario del messaggio -->
@@ -121,7 +124,6 @@
             </div>
         </div>
     </div>
-
 
     <!-- Vue script -->
     <script src="https://unpkg.com/vue@3"></script>

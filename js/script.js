@@ -166,40 +166,44 @@ createApp({
                     ],
                 },
             ],
+            // Contatto attivo
             activeContact: null,
             // Messaggio scritto dall'utente
             newMessage: '',
+            // Ricerca nei contatti
             searchQuery: '',
-            // Menu a tendina nei messaggi
-            dropdownVisible: null
+            // Menu a tendina
+            dropdownVisible: null,
+            // Stato del tema scuro/chiaro
+            darkMode: false,
         };
     },
     computed: {
+        // Filtro i contatti in base alla ricerca effettuata
         filteredContacts() {
-            // Filtro i contatti in base al nome
             return this.contacts.filter(contact => {
                 return contact.name.toLowerCase().includes(this.searchQuery.toLowerCase());
             });
         }
     },
     methods: {
+        // Seleziono un contatto dalla lista
         selectContact(contact) {
             this.activeContact = contact;
         },
+        // Aggiungo un nuovo messaggio
         addMessage() {
             if (this.newMessage.trim() !== '') {
-                // Aggiungo il messaggio inviato dall'utente
                 this.addNewMessage(this.newMessage, 'sent');
-
-                // Pulisco l'input del testo del messaggio
                 this.newMessage = '';
 
                 // Risposta automatica dopo 1 secondo
                 setTimeout(() => {
-                    this.addNewMessage('ok', 'received');
+                    this.addNewMessage('Ok!', 'received');
                 }, 1000);
             }
         },
+        // Creo una funzione per aggiungere un messaggio
         addNewMessage(message, status) {
             const now = this.getFormattedDate();
             this.activeContact.messages.push({
@@ -208,24 +212,24 @@ createApp({
                 status
             });
         },
+        // Creo una funzione che restituisce la data formattata con Luxon
         getFormattedDate() {
-            // Centralizziamo la formattazione delle date con Luxon
             return luxon.DateTime.now().toFormat('dd/MM/yyyy HH:mm:ss');
         },
+        // Mostro o nascondo il menu a tendina per un messaggio
         toggleDropdown(index) {
-            // ..se il menu a tendina è aperto per un altro messaggio, viene chiuso
             this.dropdownVisible = this.dropdownVisible === index ? null : index;
         },
+        // Elimino un messaggio dalla chat
         deleteMessage(index) {
-            // Elimino il messaggio dall'array
             this.activeContact.messages.splice(index, 1);
-            // Chiudo il menu a tendina
             this.dropdownVisible = null;
         },
+        // Mostro informazioni sul messaggio
         messageInfo(message) {
             alert(`Info: ${message.message}`);
         },
-        // Restituisco l'ultimo messaggio di un contatto
+        // Creo una funzione che restituisce l'ultimo messaggio di un contatto
         getLastMessage(contact) {
             if (contact.messages.length > 0) {
                 return contact.messages[contact.messages.length - 1].message;
@@ -233,7 +237,7 @@ createApp({
                 return "Nessun messaggio";
             }
         },
-        // Restituisco l'orario dell'ultimo messaggio di un contatto
+        // Creo una funzione che restituisce l'orario dell'ultimo messaggio di un contatto
         getLastMessageTime(contact) {
             if (contact.messages.length > 0) {
                 return this.formatMessageTime(contact.messages[contact.messages.length - 1].date);
@@ -241,14 +245,26 @@ createApp({
                 return "";
             }
         },
-        // Restituisco l'orario di ogni messaggio nella chat
+        // Formatto l'orario del messaggio con Luxon
         formatMessageTime(date) {
             const messageDate = luxon.DateTime.fromFormat(date, 'dd/MM/yyyy HH:mm:ss');
             return messageDate.toFormat('HH:mm');
+        },
+        // Creo una funzione che alterna il tema scuro con quello chiaro
+        toggleTheme() {
+            this.darkMode = !this.darkMode;
+
+            if (this.darkMode) {
+                document.body.classList.remove('light-mode');
+                document.body.classList.add('dark-mode');
+            } else {
+                document.body.classList.remove('dark-mode');
+                document.body.classList.add('light-mode');
+            }
         }
     },
     mounted() {
-        // Inizializzo il primo contatto come quello attivo
+        // Imposto il primo contatto come attivo, quando la pagina viene caricata
         this.activeContact = this.contacts[0];
     }
-}).mount('#app')
+}).mount('#app');
