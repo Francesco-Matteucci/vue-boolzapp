@@ -27,7 +27,7 @@
             <div class="contacts-list">
                 <!-- Place per la lista dei contatti -->
                 <ul>
-                    <li v-for="contact in contacts" :key="contact.name">
+                    <li v-for="contact in contacts" :key="contact.name" @click="selectContact(contact)">
                         <img :src="contact.avatar" alt="avatar" class="contact-avatar">
                         <p>{{ contact.name }}</p>
                     </li>
@@ -36,18 +36,14 @@
         </div>
 
         <!-- Colonna destra (Chat) -->
-        <div class="chat-column">
+        <div class="chat-column" v-if="activeContact">
             <div class="chat-header">
-                <p>Header Chat</p>
+                <p>{{ activeContact.name }}</p>
             </div>
             <div class="chat-messages">
-                <!-- Messaggio inviato dall'utente (verde) -->
-                <div class="sent">
-                    <p>Questo è un messaggio inviato dall'utente.</p>
-                </div>
-                <!-- Messaggio ricevuto (bianco) -->
-                <div class="received">
-                    <p>Questo è un messaggio ricevuto dall'interlocutore.</p>
+                <!-- Visualizzazione del messaggi del contatto selezionato -->
+                <div v-for="message in activeContact.messages" :key="message.date" :class="message.status">
+                    <p>{{ message.message }}</p>
                 </div>
             </div>
             <div class="chat-footer">

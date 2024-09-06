@@ -166,6 +166,16 @@ createApp({
                     ],
                 },
             ],
+            activeContact: null
         };
     },
+    methods: {
+        selectContact(contact) {
+            this.activeContact = contact;
+        }
+    },
+    mounted() {
+        // Inizializzo il primo contatto come quello attivo
+        this.activeContact = this.contacts[0];
+    }
 }).mount('#app')
