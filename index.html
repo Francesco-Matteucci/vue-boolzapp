@@ -41,13 +41,24 @@
                 <p>{{ activeContact.name }}</p>
             </div>
             <div class="chat-messages">
-                <!-- Visualizzazione del messaggi del contatto selezionato -->
+                <!-- Visualizzazione dei messaggi del contatto selezionato -->
                 <div v-for="message in activeContact.messages" :key="message.date" :class="message.status">
                     <p>{{ message.message }}</p>
                 </div>
             </div>
             <div class="chat-footer">
-                <p>Footer Chat</p>
+                <!-- Icona emoji -->
+                <i class="bi bi-emoji-smile-fill"></i>
+
+                <!-- Input per scrivere il messaggio -->
+                <input v-model="newMessage" @keyup.enter="addMessage" type="text"
+                    placeholder="Scrivi un messaggio..." />
+
+                <!-- Icona allegato -->
+                <i class="bi bi-paperclip"></i>
+
+                <!-- Icona microfono -->
+                <i class="bi bi-mic-fill"></i>
             </div>
         </div>
     </div>

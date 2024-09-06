@@ -86,6 +86,7 @@ ul {
     background-color: #fff;
     flex-grow: 1;
     padding: 20px;
+    overflow-y: auto;
 }
 
 /* Colonna della chat */
@@ -104,25 +105,26 @@ ul {
 
 .chat-messages {
     background: url('../img/mine.png');
+    padding: 10px;
     flex-grow: 1;
     padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    overflow-y: auto;
 }
 
 .sent {
     background-color: var(--sent-message-bg);
-    padding: 10px;
+    padding: 0 5px;
     border-radius: 10px;
-    margin-bottom: 10px;
     align-self: flex-end;
     max-width: 60%;
 }
 
 .received {
     background-color: var(--received-message-bg);
-    padding: 10px;
+    padding: 0 5px;
     border-radius: 10px;
     margin-bottom: 10px;
     align-self: flex-start;
@@ -132,5 +134,26 @@ ul {
 .chat-footer {
     background-color: var(--footer-bg-color);
     color: white;
-    padding: 20px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Stile per le icone */
+.chat-footer i {
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+}
+
+/* Stile per l'input di testo */
+.chat-footer input {
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    background-color: white;
+    color: black;
 }

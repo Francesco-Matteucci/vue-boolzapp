@@ -166,12 +166,36 @@ createApp({
                     ],
                 },
             ],
-            activeContact: null
+            activeContact: null,
+            // Messaggio scritto dall'utente
+            newMessage: ''
         };
     },
     methods: {
         selectContact(contact) {
             this.activeContact = contact;
+        },
+        addMessage() {
+            if (this.newMessage.trim() !== '') {
+                // Aggiungo il messaggio inviato dall'utente
+                this.addNewMessage(this.newMessage, 'sent');
+
+                // Pulisco l'input del testo del messaggio
+                this.newMessage = '';
+
+                // Risposta automatica dopo 1 secondo
+                setTimeout(() => {
+                    this.addNewMessage('ok', 'received');
+                }, 1000);
+            }
+        },
+        addNewMessage(message, status) {
+            // Aggiungo un nuovo messaggio all'array dei messaggi
+            this.activeContact.messages.push({
+                date: new Date().toLocaleString(),
+                message,
+                status
+            });
         }
     },
     mounted() {
