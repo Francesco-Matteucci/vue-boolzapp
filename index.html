@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boolzapp</title>
 
+    <!-- Luxon library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/2.3.0/luxon.min.js"></script>
+
     <!-- Google Font - Lato -->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
 
@@ -18,14 +21,14 @@
 
 <body>
     <div id="app" class="container">
-        <!-- Colonna sinistra (Contatti) -->
+        <!-- Colonna di sinistra (Contatti) -->
         <div class="contacts-column">
             <div class="contacts-header">
                 <div class="profile-info">
                     <!-- Immagine del nostro profilo -->
-                    <img src="./img/avatar_io.png" alt="avatar" class="profile-avatar">
+                    <img src="img/avatar_io.jpg" alt="avatar" class="profile-avatar">
                     <!-- Nome del profilo personale -->
-                    <p>Sofia</p>
+                    <p>Francesco</p>
                 </div>
 
                 <!-- Icone del nostro profilo -->
@@ -38,29 +41,37 @@
             </div>
             <!-- Barra di ricerca contatti -->
             <div class="search-bar">
-                <input v-model="searchQuery" type="text" placeholder="Cerca contatti..." />
+                <input v-model="searchQuery" type="text" placeholder="Cerca nei contatti...">
             </div>
 
             <div class="contacts-list">
                 <!-- Place per la lista dei contatti -->
                 <ul>
-                    <!-- Visualizzazione dinamica della lista contatti filtrata -->
+                    <!-- Visualizzazione dinamica della lista contatti -->
                     <li v-for="contact in filteredContacts" :key="contact.name" @click="selectContact(contact)">
                         <img :src="contact.avatar" alt="avatar" class="contact-avatar">
-                        <p>{{ contact.name }}</p>
+                        <div class="contact-details">
+                            <p>{{ contact.name }}</p>
+                            <p class="last-message">{{ getLastMessage(contact) }}</p>
+                        </div>
+                        <span class="message-time">{{ getLastMessageTime(contact) }}</span>
                     </li>
                 </ul>
             </div>
         </div>
 
-        <!-- Colonna destra (Chat) -->
+        <!-- Colonna di destra (Chat) -->
         <div class="chat-column" v-if="activeContact">
-            <div class="chat-header" v-if="activeContact">
+            <div class="chat-header">
                 <div class="chat-info">
                     <!-- Immagine del contatto selezionato -->
                     <img :src="activeContact.avatar" alt="avatar" class="header-avatar">
                     <!-- Nome del contatto selezionato -->
-                    <p>{{ activeContact.name }}</p>
+                    <div class="contact-details">
+                        <p>{{ activeContact.name }}</p>
+                        <!-- Ultimo accesso -->
+                        <p class="last-seen">Ultimo accesso alle {{ getLastMessageTime(activeContact) }}</p>
+                    </div>
                 </div>
 
                 <!-- Icone -->
@@ -75,8 +86,23 @@
             </div>
             <div class="chat-messages">
                 <!-- Visualizzazione dei messaggi del contatto selezionato -->
-                <div v-for="message in activeContact.messages" :key="message.date" :class="message.status">
-                    <p>{{ message.message }}</p>
+                <div v-for="(message, index) in activeContact.messages" :key="message.date" :class="message.status"
+                    class="message-wrapper">
+                    <div class="message-content">
+                        <p>{{ message.message }}</p>
+                        <!-- Orario del messaggio -->
+                        <span class="message-time">{{ formatMessageTime(message.date) }}</span>
+                        <!-- Icona per il menu a tendina -->
+                        <i v-if="message.status === 'sent'" class="bi bi-chevron-down"
+                            @click="toggleDropdown(index)"></i>
+                    </div>
+                    <!-- Menu a tendina -->
+                    <div v-if="dropdownVisible === index" class="dropdown-menu">
+                        <ul>
+                            <li @click="messageInfo(message)">Message info</li>
+                            <li @click="deleteMessage(index)">Delete message</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div class="chat-footer">

@@ -4,7 +4,6 @@
     --secondary-bg-color: #DADBD4;
     --header-bg-color: #EAEAEA;
     --footer-bg-color: #F3EEEA;
-    --chat-bg-color: lightgreen;
     --contact-bg-color: lightblue;
     --sent-message-bg: #D5F9BA;
     --received-message-bg: #ffffff;
@@ -52,6 +51,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.contacts-header {
+    height: 40px;
 }
 
 /* Sezione per l'immagine e il nome */
@@ -117,8 +120,10 @@ ul {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
-    padding: 10px;
+    padding: 8px;
+    gap: 10px;
     cursor: pointer;
+    position: relative;
 }
 
 .contacts-list li:hover {
@@ -130,6 +135,30 @@ ul {
     margin: 0;
     margin-left: 10px;
     font-size: 16px;
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-details p {
+    margin: 0;
+}
+
+.last-seen {
+    font-size: 0.85rem;
+    color: gray;
+}
+
+p.last-message {
+    font-size: 0.85rem;
+    margin-top: 2px;
+}
+
+.message-time {
+    font-size: 0.8rem;
+    color: gray;
 }
 
 /* Colonna della chat */
@@ -154,7 +183,7 @@ ul {
 .received {
     padding: 0 5px;
     border-radius: 10px;
-    max-width: 60%;
+
 }
 
 .sent {
@@ -165,6 +194,64 @@ ul {
 .received {
     background-color: var(--received-message-bg);
     align-self: flex-start;
+}
+
+.message-wrapper {
+    position: relative;
+    max-width: 60%;
+    margin-bottom: 10px;
+}
+
+.message-wrapper p {
+    margin-right: 50px;
+    margin-left: 10px;
+}
+
+/* Contenuto del messaggio */
+.message-content {
+    display: flex;
+}
+
+/* Icona del menu a tendina */
+.message-content i {
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+/* Data in basso a destra */
+.message-time {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: 0.70rem;
+}
+
+/* Menu a tendina */
+.dropdown-menu {
+    position: absolute;
+    background-color: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 10px;
+    z-index: 100;
+    top: 100%;
+    right: 0;
+    display: block;
+}
+
+.dropdown-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-menu li {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.dropdown-menu li:hover {
+    background-color: #f1f1f1;
 }
 
 /* Footer */
@@ -183,5 +270,4 @@ ul {
     border-radius: 20px;
     border: none;
     outline: none;
-    color: black;
 }
