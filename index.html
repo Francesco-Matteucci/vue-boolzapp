@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body class="light-mode">
+<body>
     <div id="app" class="container">
         <!-- Colonna di sinistra (Contatti) -->
         <div class="contacts-column">
@@ -50,7 +50,6 @@
             <div class="contacts-list">
                 <!-- Place per la lista dei contatti -->
                 <ul>
-                    <!-- Visualizzazione dinamica della lista contatti -->
                     <li v-for="contact in filteredContacts" :key="contact.name" @click="selectContact(contact)">
                         <img :src="contact.avatar" alt="avatar" class="contact-avatar">
                         <div class="contact-details">
@@ -69,14 +68,13 @@
                 <div class="chat-info">
                     <!-- Immagine del contatto selezionato -->
                     <img :src="activeContact.avatar" alt="avatar" class="header-avatar">
-                    <!-- Nome del contatto selezionato -->
                     <div class="contact-details">
+                        <!-- Nome del contatto selezionato -->
                         <p>{{ activeContact.name }}</p>
                         <!-- Ultimo accesso -->
                         <p class="last-seen">Ultimo accesso alle {{ getLastMessageTime(activeContact) }}</p>
                     </div>
                 </div>
-
                 <!-- Icone -->
                 <div class="chat-header-icons">
                     <!-- Icona videocamera -->
@@ -92,6 +90,7 @@
                 <div v-for="(message, index) in activeContact.messages" :key="message.date" :class="message.status"
                     class="message-wrapper animate-message">
                     <div class="message-content">
+                        <!-- Contenuto del messaggio -->
                         <p>{{ message.message }}</p>
                         <!-- Orario del messaggio -->
                         <span class="message-time">{{ formatMessageTime(message.date) }}</span>
@@ -111,14 +110,11 @@
             <div class="chat-footer">
                 <!-- Icona emoji -->
                 <i class="bi bi-emoji-smile-fill"></i>
-
                 <!-- Input per scrivere il messaggio -->
                 <input v-model="newMessage" @keyup.enter="addMessage" type="text"
                     placeholder="Scrivi un messaggio..." />
-
                 <!-- Icona allegato -->
                 <i class="bi bi-paperclip"></i>
-
                 <!-- Icona microfono -->
                 <i class="bi bi-mic-fill"></i>
             </div>
@@ -127,7 +123,6 @@
 
     <!-- Vue script -->
     <script src="https://unpkg.com/vue@3"></script>
-
     <!-- My script -->
     <script src="js/script.js"></script>
 </body>

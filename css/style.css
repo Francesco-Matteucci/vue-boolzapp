@@ -5,7 +5,7 @@
     --light-secondary-bg-color: #DADBD4;
     --light-header-bg-color: #EAEAEA;
     --light-footer-bg-color: #F3EEEA;
-    --light-contact-bg-color: lightblue;
+    --light-contact-bg-color: #F3EEEA;
     --light-sent-message-bg: #D5F9BA;
     --light-received-message-bg: #ffffff;
     --light-text-color: #000000;
@@ -113,6 +113,15 @@ body {
     width: var(--avatar-size);
     height: var(--avatar-size);
     border-radius: 50%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Effetto hover sugli avatar */
+.contact-avatar:hover,
+.profile-avatar:hover,
+.header-avatar:hover {
+    transform: scale(1.2);
 }
 
 /* Icone */
@@ -134,7 +143,7 @@ body {
 /* Barra di ricerca */
 .search-bar {
     padding: 10px;
-    background-color: #f1f1f1;
+    background-color: var(--footer-bg-color);
 }
 
 .search-bar input {
@@ -147,7 +156,7 @@ body {
 
 /* Lista contatti */
 .contacts-list {
-    background-color: #fff;
+    background-color: var(--footer-bg-color);
     flex-grow: 1;
     padding: var(--padding-main);
     overflow-y: auto;
@@ -166,17 +175,21 @@ ul {
     gap: 10px;
     cursor: pointer;
     position: relative;
+    background-color: var(--contact-bg-color);
+    color: var(--text-color);
 }
 
 .contacts-list li:hover {
-    background-color: lightgray;
+    background-color: var(--header-bg-color);
     border-radius: 8px;
 }
+
 
 .contacts-list p {
     margin: 0;
     margin-left: 10px;
     font-size: 16px;
+    color: var(--text-color);
 }
 
 .contact-details {
@@ -219,6 +232,7 @@ p.last-message {
     flex-direction: column;
     gap: var(--gap-main);
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 body.dark-mode .chat-messages {

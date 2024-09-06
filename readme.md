@@ -46,6 +46,30 @@
 ### 3. Ultimo Accesso Dinamico
 - Sotto il nome del contatto attivo, viene mostrato l'ultimo accesso, che corrisponde all'orario dell'ultimo messaggio ricevuto da quel contatto.
 
+### 4. Bot in Chat - Introduzione al Bot
+Una delle ultime funzionalità aggiunte è stata l'integrazione di un bot che risponde automaticamente ai messaggi inviati dall'utente. Il bot è in grado di rispondere in modo casuale o in base a parole chiave specifiche, rendendo la conversazione più interattiva e divertente.
+
+### Funzionalità principali
+
+- **Risposte automatiche casuali**: Quando l'utente invia un messaggio, il bot risponde automaticamente con una frase scelta casualmente da una lista predefinita.
+  
+- **Risposte basate su parole chiave**: Il bot è in grado di riconoscere specifiche parole chiave nel messaggio dell'utente (ad esempio, "js", "css", "html") e rispondere con frasi pertinenti al contesto. Le parole chiave sono configurate in un oggetto e possono essere facilmente estese.
+
+- **Tempistica delle risposte**: Il bot risponde con un ritardo di 1 secondo per simulare una conversazione più naturale.
+
+### Esempio di funzionamento
+Se l'utente invia un messaggio come "Ciao", il bot potrebbe rispondere con "Ciao! Facciamo prelezione domattina, pronto?". Se invece l'utente scrive "js", il bot risponderà con una frase come "Oh! Amo parlare di JavaScript!".
+
+### Codice rilevante
+Il bot utilizza un sistema di parole chiave e risposte casuali, implementato all'interno di Vue tramite due metodi principali:
+- `getResponseByKeyword()`: Cerca una risposta pertinente basata su parole chiave.
+- `getRandomBotResponse()`: Restituisce una risposta casuale da una lista predefinita.
+
+### Possibili miglioramenti futuri
+- Espandere il dizionario di parole chiave e risposte pertinenti.
+- Aggiungere ulteriori funzionalità interattive, come la possibilità di rispondere a domande più complesse.
+
+
 ## Tecnologie Utilizzate
 
 - **Vue.js** per la gestione dei dati e la reattività dell'interfaccia.
