@@ -15,13 +15,18 @@ createApp({
                             status: 'sent'
                         },
                         {
+                            date: '10/01/2020 15:37:42',
+                            message: "Quasi, poi torno indietro nel tempo per inviarla in orario",
+                            status: 'received'
+                        },
+                        {
                             date: '10/01/2020 15:50:00',
                             message: "Ricordati di caricare il progetto di terraformazione sull'IA",
                             status: 'sent'
                         },
                         {
                             date: '10/01/2020 16:15:22',
-                            message: 'Tutto fatto, ovviamente!',
+                            message: 'Gia fatto, ovviamente!',
                             status: 'received'
                         }
                     ],
@@ -176,6 +181,8 @@ createApp({
             dropdownVisible: null,
             // Stato del tema scuro/chiaro
             darkMode: false,
+            // Sistema notifiche
+            notificationsActive: false,
 
             // Risposte del bot
             botResponses: [
@@ -296,6 +303,9 @@ createApp({
             this.darkMode = !this.darkMode;
             document.body.classList.toggle('dark-mode', this.darkMode);
             document.body.classList.toggle('light-mode', !this.darkMode);
+        },
+        toggleNotifications() {
+            this.notificationsActive = !this.notificationsActive;
         }
     },
     mounted() {

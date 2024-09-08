@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boolzapp</title>
 
+    <!-- Emoji -->
+    <script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@4.6.2/dist/index.min.js"></script>
+
     <!-- Luxon library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/2.3.0/luxon.min.js"></script>
 
@@ -42,6 +45,20 @@
                         @click="toggleTheme"></i>
                 </div>
             </div>
+            <!-- Sezione notifiche -->
+            <div class="contacts-notifications">
+                <div class="notification-item" @click="toggleNotifications">
+                    <!-- Icona cambia in base allo stato -->
+                    <i :class="notificationsActive ? 'bi-bell' : 'bi-bell-slash'"></i>
+                    <div class="notification-text">
+                        <p>Ricevi notifiche di nuovi messaggi</p>
+                        <!-- Il testo cambia dinamicamente -->
+                        <a href="#">{{ notificationsActive ? 'Disattiva notifiche desktop' : 'Attiva notifiche desktop'
+                            }}</a>
+                    </div>
+                </div>
+            </div>
+
             <!-- Barra di ricerca contatti -->
             <div class="search-bar">
                 <input v-model="searchQuery" type="text" placeholder="Cerca nei contatti...">

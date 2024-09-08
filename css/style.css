@@ -10,6 +10,9 @@
     --light-received-message-bg: #ffffff;
     --light-text-color: #000000;
     --light-icon-color: #000000;
+    --light-notification-bg-color: #e6f7ff;
+    --light-icon-bg-color: #ffffff;
+    --light-link-color: #007bff;
 
     /* Dark Mode Colors */
     --dark-main-bg-color: #2c2c2c;
@@ -21,6 +24,9 @@
     --dark-received-message-bg: #262d31;
     --dark-text-color: #f1f1f1;
     --dark-icon-color: #f1f1f1;
+    --dark-notification-bg-color: #37474f;
+    --dark-icon-bg-color: #546e7a;
+    --dark-link-color: #4fc3f7;
 
     /* Shared properties */
     --font-family: 'Lato', sans-serif;
@@ -41,6 +47,9 @@ body.light-mode {
     --received-message-bg: var(--light-received-message-bg);
     --contact-bg-color: var(--light-contact-bg-color);
     --icon-color: var(--light-icon-color);
+    --notification-bg-color: var(--light-notification-bg-color);
+    --icon-bg-color: var(--light-icon-bg-color);
+    --link-color: var(--light-link-color);
 }
 
 /* Dark Mode */
@@ -54,6 +63,9 @@ body.dark-mode {
     --received-message-bg: var(--dark-received-message-bg);
     --contact-bg-color: var(--dark-contact-bg-color);
     --icon-color: var(--dark-icon-color);
+    --notification-bg-color: var(--dark-notification-bg-color);
+    --icon-bg-color: var(--dark-icon-bg-color);
+    --link-color: var(--dark-link-color);
 }
 
 /* Base Styles */
@@ -140,6 +152,52 @@ body {
     transition: color 0.3s ease;
 }
 
+/* Sezione notifiche */
+.contacts-notifications {
+    background-color: var(--notification-bg-color);
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.notification-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+}
+
+.notification-item i {
+    padding: 10px;
+    background-color: var(--icon-bg-color);
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: var(--link-color);
+}
+
+.notification-text {
+    display: block;
+}
+
+.notification-text p {
+    margin: 0;
+    font-weight: bold;
+    color: var(--link-color);
+}
+
+.notification-text a {
+    font-size: 0.9rem;
+    color: var(--link-color);
+    text-decoration: underline;
+    display: block;
+    margin-top: 5px;
+}
+
+.notification-text a:hover {
+    text-decoration: none;
+}
+
 /* Barra di ricerca */
 .search-bar {
     padding: 10px;
@@ -171,6 +229,7 @@ ul {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
+    border-radius: 5px;
     padding: 8px;
     gap: 10px;
     cursor: pointer;
@@ -326,7 +385,6 @@ body.dark-mode .chat-messages {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     padding: 10px;
-    z-index: 100;
     top: 100%;
     right: 0;
     display: block;
