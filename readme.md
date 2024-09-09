@@ -1,7 +1,6 @@
 # Boolzapp - a (not very) innovative messaging platform
 
-
-**Boolzapp** è una semplice applicazione di messaggistica che replica le funzionalità base di WhatsApp. L'app è stata realizzata per esercitazione con l'obiettivo di esplorare diverse tecniche di sviluppo front-end, utilizzando **Vue.js**, **CSS** e **Bootstrap Icons**. Inoltre, sono stati aggiunti ulteriori miglioramenti come il **tema scuro** e le **animazioni**.
+**Boolzapp** è una semplice applicazione di messaggistica che replica le funzionalità base di WhatsApp. L'app è stata realizzata per esercitazione con l'obiettivo di esplorare diverse tecniche di sviluppo front-end, utilizzando **Vue.js**, **CSS** e **Bootstrap Icons**. Inoltre, sono stati aggiunti ulteriori miglioramenti come il **tema scuro**, le **animazioni**, ed un **chatbot**.
 
 ## Milestones
 
@@ -18,7 +17,7 @@
 - Utilizzo di Vue.js per aggiornare dinamicamente la chat selezionata.
 
 ### Milestone 3 - Invio Messaggi
-- Aggiunta ls funzionalità di invio messaggi tramite un input.
+- Aggiunta della funzionalità di invio messaggi tramite un input.
 - I messaggi vengono aggiunti alla chat dinamicamente e inviati dall'utente (in verde).
 - Risposta automatica simulata con un delay di 1 secondo.
 
@@ -28,7 +27,7 @@
 
 ### Milestone 5 - Eliminazione Messaggi
 - Aggiunta di un menu a tendina su ciascun messaggio inviato dall'utente con opzioni per eliminare il messaggio.
-- Il menu è visibile solo al passaggio del mouse sul messaggio.
+- Il menu è visibile solo al click del mouse sul messaggio.
 - Gestione della visualizzazione del menu con `toggleDropdown()` e la cancellazione del messaggio tramite `deleteMessage()`.
 
 ## Implementazioni Aggiuntive
@@ -49,7 +48,7 @@
 ### 4. Bot in Chat - Introduzione al Bot
 Una delle ultime funzionalità aggiunte è stata l'integrazione di un bot che risponde automaticamente ai messaggi inviati dall'utente. Il bot è in grado di rispondere in modo casuale o in base a parole chiave specifiche, rendendo la conversazione più interattiva e divertente.
 
-### Funzionalità principali
+#### Funzionalità principali
 
 - **Risposte automatiche casuali**: Quando l'utente invia un messaggio, il bot risponde automaticamente con una frase scelta casualmente da una lista predefinita.
   
@@ -57,18 +56,24 @@ Una delle ultime funzionalità aggiunte è stata l'integrazione di un bot che ri
 
 - **Tempistica delle risposte**: Il bot risponde con un ritardo di 1 secondo per simulare una conversazione più naturale.
 
-### Esempio di funzionamento
+#### Esempio di funzionamento
 Se l'utente invia un messaggio come "Ciao", il bot potrebbe rispondere con "Ciao! Facciamo prelezione domattina, pronto?". Se invece l'utente scrive "js", il bot risponderà con una frase come "Oh! Amo parlare di JavaScript!".
 
-### Codice rilevante
+#### Codice rilevante
 Il bot utilizza un sistema di parole chiave e risposte casuali, implementato all'interno di Vue tramite due metodi principali:
 - `getResponseByKeyword()`: Cerca una risposta pertinente basata su parole chiave.
 - `getRandomBotResponse()`: Restituisce una risposta casuale da una lista predefinita.
 
-### Possibili miglioramenti futuri
+#### Possibili miglioramenti futuri
 - Espandere il dizionario di parole chiave e risposte pertinenti.
 - Aggiungere ulteriori funzionalità interattive, come la possibilità di rispondere a domande più complesse.
 
+### 5. Responsive Design
+- Implementazione del design **responsive** per rendere l'applicazione fruibile su dispositivi mobili.
+  - Su risoluzioni ridotte, viene visualizzata solo la lista contatti.
+  - Cliccando su un contatto, la lista contatti scompare e viene mostrata solo la chat.
+  - Un'icona "freccia indietro" consente di tornare alla lista contatti in modalità mobile.
+  - In modalità desktop, la freccia scompare e la visualizzazione torna alle due colonne standard (lista contatti e chat).
 
 ## Tecnologie Utilizzate
 
