@@ -218,6 +218,14 @@ createApp({
         // Seleziono un contatto dalla lista
         selectContact(contact) {
             this.activeContact = contact;
+            // Aggiungo una classe al body per gestire la visualizzazione
+            document.body.classList.add('chat-active');
+        },
+        // Torno alla lista contatti
+        goBackToContacts() {
+            this.activeContact = null;
+            // Rimuovo la classe dal body
+            document.body.classList.remove('chat-active');
         },
         // Aggiungo un nuovo messaggio
         addMessage() {

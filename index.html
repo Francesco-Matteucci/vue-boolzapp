@@ -45,6 +45,7 @@
                         @click="toggleTheme"></i>
                 </div>
             </div>
+
             <!-- Sezione notifiche -->
             <div class="contacts-notifications">
                 <div class="notification-item" @click="toggleNotifications">
@@ -64,10 +65,12 @@
                 <input v-model="searchQuery" type="text" placeholder="Cerca nei contatti...">
             </div>
 
+            <!-- Lista contatti -->
             <div class="contacts-list">
-                <!-- Place per la lista dei contatti -->
                 <ul>
+                    <!-- Ciclo sui contatti filtrati -->
                     <li v-for="contact in filteredContacts" :key="contact.name" @click="selectContact(contact)">
+                        <!-- Immagine avatar contatto -->
                         <img :src="contact.avatar" alt="avatar" class="contact-avatar">
                         <div class="contact-details">
                             <p>{{ contact.name }}</p>
@@ -83,6 +86,8 @@
         <div class="chat-column" v-if="activeContact">
             <div class="chat-header">
                 <div class="chat-info">
+                    <!-- Icona per tornare indietro in modalità mobile -->
+                    <i class="bi bi-arrow-left" @click="goBackToContacts"></i>
                     <!-- Immagine del contatto selezionato -->
                     <img :src="activeContact.avatar" alt="avatar" class="header-avatar">
                     <div class="contact-details">
@@ -92,7 +97,8 @@
                         <p class="last-seen">Ultimo accesso alle {{ getLastMessageTime(activeContact) }}</p>
                     </div>
                 </div>
-                <!-- Icone -->
+
+                <!-- Icone della chat -->
                 <div class="chat-header-icons">
                     <!-- Icona videocamera -->
                     <i class="bi bi-camera-video"></i>
@@ -102,12 +108,13 @@
                     <i class="bi bi-three-dots-vertical"></i>
                 </div>
             </div>
+
+            <!-- Messaggi della chat -->
             <div class="chat-messages">
-                <!-- Visualizzazione dei messaggi del contatto selezionato -->
                 <div v-for="(message, index) in activeContact.messages" :key="message.date" :class="message.status"
                     class="message-wrapper animate-message">
                     <div class="message-content">
-                        <!-- Contenuto del messaggio -->
+                        <!-- Testo del messaggio -->
                         <p>{{ message.message }}</p>
                         <!-- Orario del messaggio -->
                         <span class="message-time">{{ formatMessageTime(message.date) }}</span>
@@ -115,7 +122,7 @@
                         <i v-if="message.status === 'sent'" class="bi bi-chevron-down"
                             @click="toggleDropdown(index)"></i>
                     </div>
-                    <!-- Menu a tendina -->
+                    <!-- Menu a tendina per le opzioni del messaggio -->
                     <div v-if="dropdownVisible === index" class="dropdown-menu">
                         <ul>
                             <li @click="messageInfo(message)">Message info</li>
@@ -124,6 +131,8 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Footer della chat -->
             <div class="chat-footer">
                 <!-- Icona emoji -->
                 <i class="bi bi-emoji-smile-fill"></i>
