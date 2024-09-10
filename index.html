@@ -141,8 +141,9 @@
                     placeholder="Scrivi un messaggio..." />
                 <!-- Icona allegato -->
                 <i class="bi bi-paperclip"></i>
-                <!-- Icona microfono -->
-                <i class="bi bi-mic-fill"></i>
+                <!-- Icone dinamiche per l'invio o il microfono -->
+                <i v-if="newMessage.trim() !== ''" class="bi bi-send" @click="addMessage"></i>
+                <i v-else class="bi bi-mic-fill"></i>
             </div>
         </div>
     </div>
