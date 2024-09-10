@@ -88,6 +88,107 @@ body {
     box-shadow: var(--container-shadow);
 }
 
+/* Stili per la splash page */
+.splash-page {
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.8s ease-out;
+    clip-path: circle(150% at 50% 50%);
+    transition: clip-path 1s ease-in-out;
+    z-index: 1;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.splash-page.fade-out {
+    animation: fadeOut 0.8s ease-in;
+    clip-path: circle(0% at 50% 50%);
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+.splash-content {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.splash-content h2 {
+    margin-bottom: 15px;
+}
+
+.splash-content p {
+    margin-bottom: 20px;
+}
+
+.splash-icon {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    transform: scale(1);
+}
+
+.splash-icon i {
+    display: block;
+    font-size: 50px;
+    color: yellow;
+    animation: pulse 1s infinite;
+}
+
+.splash-icon i:hover {
+    color: orange;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+.splash-content button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #009688;
+    color: white;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.splash-content button:hover {
+    background-color: #00796b;
+}
+
 /* Colonna dei contatti */
 .contacts-column {
     width: 30%;

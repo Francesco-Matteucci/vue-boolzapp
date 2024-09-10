@@ -24,6 +24,21 @@
 
 <body>
     <div id="app" class="container">
+        <!-- Splash Page -->
+        <div v-if="showSplashPage" class="splash-page">
+            <div class="splash-content">
+                <h2>Benvenuto su Boolzapp!</h2><br>
+                <p>Questo è un tutorial rapido.</p>
+                <p> Puoi cambiare tra tema scuro e tema chiaro cliccando l'icona del sole o
+                    della luna nell'header della colonna di sinistra, accanto al nome Francesco.</p>
+                <div class="splash-icon">
+                    <!-- Icona tema per la splash -->
+                    <i class="bi bi-brightness-high"></i>
+                </div>
+                <button @click="closeSplashPage">OK, ho capito!</button>
+            </div>
+        </div>
+
         <!-- Colonna di sinistra (Contatti) -->
         <div class="contacts-column">
             <div class="contacts-header">

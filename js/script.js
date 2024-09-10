@@ -3,6 +3,9 @@ const { createApp } = Vue
 createApp({
     data() {
         return {
+            // Variabile per mostrare la splash page
+            showSplashPage: true,
+
             contacts: [
                 {
                     name: 'Marco Lanci',
@@ -215,6 +218,15 @@ createApp({
         }
     },
     methods: {
+        // Funzione per chiudere la splash page
+        closeSplashPage() {
+            const splash = document.querySelector('.splash-page');
+            splash.classList.add('fade-out');
+            setTimeout(() => {
+                this.showSplashPage = false;
+            }, 800);
+        },
+
         // Seleziono un contatto dalla lista
         selectContact(contact) {
             this.activeContact = contact;
