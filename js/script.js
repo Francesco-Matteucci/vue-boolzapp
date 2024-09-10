@@ -187,25 +187,44 @@ createApp({
             // Sistema notifiche
             notificationsActive: false,
 
-            // Risposte del bot
+            // Risposte casuali del bot
             botResponses: [
                 "Mi piace quando parli di codice!",
-                "Sei troppo bravo, vai così!",
-                "Oh, ottima domanda!",
-                "Mi stai sorprendendo!",
-                "Il tuo progetto è fantastico!",
-                "Scommetto che finirai presto!"
+                "Sei troppo bravo, continua così!",
+                "Ottima domanda! Mi hai messo in difficoltà.",
+                "Sono qui solo per vedere quanto sei bravo!",
+                "Il tuo progetto è fantastico! Continua!",
+                "Scommetto che finirai presto!",
+                "Sai che sei uno sviluppatore incredibile?",
+                "Lavorare con te è un piacere!",
+                "Sei sicuro di non essere un robot superintelligente?",
+                "La tua logica è impeccabile, complimenti!",
+                "Ogni giorno diventi sempre più bravo.",
+                "Sento che stai per trovare una soluzione geniale!",
+                "Continua così, il successo è dietro l'angolo!",
+                "Oggi è un giorno perfetto per imparare qualcosa di nuovo!",
+                "Mi stai sorprendendo ogni volta!",
+                "Stai diventando un vero esperto!"
             ],
-            // Parole chiave e risposte pertinenti
+
+            // Risposte basate su parole chiave
             keywordResponses: {
-                "ciao": "Ciao! Facciamo prelezione domattina, pronto?",
-                "js": "Oh! Amo parlare di JavaScript!",
-                "html": "HTML è la struttura di tutto!",
-                "css": "CSS rende tutto bello, vero?",
-                "vue": "Vue è il mio framework preferito!",
-                "graffe": "Le odio, mi fanno sempre saltare la tastiera!!",
-                "wow": "Fiko no????!",
-                "artificiale": "Dipende sempre che utilizzo se ne fa! Alcune volte è un tool, altre volte può essere una rovina!!"
+                "ciao": "Ciao! Sei pronto a scrivere un po' di codice oggi?",
+                "js": "JavaScript è il linguaggio del futuro! Non trovi?",
+                "html": "HTML è la struttura di tutto. Senza di lui, niente siti!",
+                "css": "CSS rende tutto bello, vero? Adoro i layout ben fatti.",
+                "vue": "Vue è il mio framework preferito! Facile da imparare, potente da usare.",
+                "graffe": "Le odio anch'io! Ti fanno impazzire vero?",
+                "wow": "Fiko no??? Sei davvero un maestro!",
+                "artificiale": "L'intelligenza artificiale è affascinante! Potrebbe cambiare il mondo.",
+                "debug": "Debuggare è come risolvere un mistero, e tu sei un detective!",
+                "frontend": "Il frontend è dove la magia visiva prende forma!",
+                "backend": "Ah, il backend... dove succede tutta la logica.",
+                "git": "Git salva vite, non dimenticarti mai di fare un commit!",
+                "funzione": "Le funzioni sono la base di tutto. Creale bene e sarà tutto più facile.",
+                "api": "Le API collegano tutto, come dei ponti tra sistemi diversi!",
+                "array": "L'array? Una lista infinita di possibilità!",
+                "loop": "I loop sono fondamentali, ma attento a non finire in un loop infinito!"
             }
         };
     },
@@ -233,25 +252,34 @@ createApp({
             // Aggiungo una classe al body per gestire la visualizzazione
             document.body.classList.add('chat-active');
         },
+
         // Torno alla lista contatti
         goBackToContacts() {
             this.activeContact = null;
             // Rimuovo la classe dal body
             document.body.classList.remove('chat-active');
         },
+
         // Aggiungo un nuovo messaggio
         addMessage() {
             if (this.newMessage.trim() !== '') {
+                // Aggiungo il messaggio dell'utente
                 this.addNewMessage(this.newMessage, 'sent');
                 const userMessage = this.newMessage.toLowerCase();
                 this.newMessage = '';
 
+                // Scroll subito dopo l'aggiunta del messaggio dell'utente
+                this.scrollAfterMessage();
+
                 // Risposta del bot dopo 1 secondo
                 setTimeout(() => {
                     this.respondToMessage(userMessage);
+                    // Scroll dopo la risposta del bot
+                    this.scrollAfterMessage();
                 }, 1000);
             }
         },
+
         // Aggiungo un nuovo messaggio
         addNewMessage(message, status) {
             const now = this.getFormattedDate();
@@ -261,15 +289,33 @@ createApp({
                 status
             });
         },
+
+        // Scroll automatico in basso
+        scrollToBottom() {
+            const chatContainer = this.$refs.chatMessages;
+            if (chatContainer) {
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+        },
+
+        scrollAfterMessage() {
+            // Utilizzo nextTick per eseguire lo scroll nella chat
+            this.$nextTick(() => {
+                this.scrollToBottom();
+            });
+        },
+
         // Ottengo la data formattata con Luxon
         getFormattedDate() {
             return luxon.DateTime.now().toFormat('dd/MM/yyyy HH:mm:ss');
         },
+
         // Rispondo al messaggio dell'utente
         respondToMessage(userMessage) {
             let response = this.getResponseByKeyword(userMessage) || this.getRandomBotResponse();
             this.addNewMessage(response, 'received');
         },
+
         // Trovo una risposta basata su una parola chiave
         getResponseByKeyword(message) {
             for (const keyword in this.keywordResponses) {
@@ -279,24 +325,29 @@ createApp({
             }
             return null;
         },
+
         // Ottengo una risposta casuale dal bot
         getRandomBotResponse() {
             const randomIndex = Math.floor(Math.random() * this.botResponses.length);
             return this.botResponses[randomIndex];
         },
+
         // Mostro o nascondo il menu a tendina
         toggleDropdown(index) {
             this.dropdownVisible = this.dropdownVisible === index ? null : index;
         },
+
         // Elimino un messaggio
         deleteMessage(index) {
             this.activeContact.messages.splice(index, 1);
             this.dropdownVisible = null;
         },
+
         // Mostro informazioni su un messaggio
         messageInfo(message) {
             alert(`Info: ${message.message}`);
         },
+
         // Ottengo l'ultimo messaggio di un contatto
         getLastMessage(contact) {
             if (contact.messages.length > 0) {
@@ -305,6 +356,7 @@ createApp({
                 return "Nessun messaggio";
             }
         },
+
         // Ottengo l'orario dell'ultimo messaggio di un contatto
         getLastMessageTime(contact) {
             if (contact.messages.length > 0) {
@@ -313,17 +365,20 @@ createApp({
                 return "";
             }
         },
+
         // Formatto l'orario del messaggio con Luxon
         formatMessageTime(date) {
             const messageDate = luxon.DateTime.fromFormat(date, 'dd/MM/yyyy HH:mm:ss');
             return messageDate.toFormat('HH:mm');
         },
+
         // Alterno il tema tra scuro e chiaro
         toggleTheme() {
             this.darkMode = !this.darkMode;
             document.body.classList.toggle('dark-mode', this.darkMode);
             document.body.classList.toggle('light-mode', !this.darkMode);
         },
+
         toggleNotifications() {
             this.notificationsActive = !this.notificationsActive;
         }

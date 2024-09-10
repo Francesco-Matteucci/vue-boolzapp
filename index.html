@@ -125,7 +125,7 @@
             </div>
 
             <!-- Messaggi della chat -->
-            <div class="chat-messages">
+            <div class="chat-messages" ref="chatMessages">
                 <div v-for="(message, index) in activeContact.messages" :key="message.date" :class="message.status"
                     class="message-wrapper animate-message">
                     <div class="message-content">
